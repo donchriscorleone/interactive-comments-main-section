@@ -1,0 +1,77 @@
+@import './../../../assets/variables.scss';
+
+.btn {
+    outline: none;
+    border: none;
+    border-radius: .5rem;
+    background: none;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0 .5rem;
+    cursor: pointer;
+}
+
+.btn-hover {
+    transition: opacity .5s;
+}
+
+.btn-hover:hover {
+    opacity: .45;
+}
+
+.btn-sm {
+    padding: 1rem 1.5rem;
+
+}
+.btn-lg {
+    padding: 1.3rem 1.85rem;
+    font-size: 1.5rem;
+}
+
+.btn-warning {
+    background-color: $soft-red;
+    color: $very-light-gray;
+}
+
+.btn-primary {
+    background-color: $moderate-blue;
+    color: $very-light-gray;
+}
+
+.btn-accent {
+    background-color: $grayish-blue;
+    color: $very-light-gray;
+}
+
+.btn-icon {
+    display: flex;
+    font-size: 1.4rem;
+    align-items: flex-end;
+}
+
+.btn-icon-container {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: .5rem;
+}
+
+.icon-delete {
+    background-image: url('/assets/images/icon-delete.svg');
+}
+
+.icon-edit {
+    background-image: url('/assets/images/icon-edit.svg');
+}
+
+.icon-reply {
+    background-image: url('/assets/images/icon-reply.svg');
+}
+.icon-plus {
+    background-image: url('/assets/images/icon-plus.svg');
+}
+.icon-minus {
+    background-image: url('/assets/images/icon-minus.svg');
+}

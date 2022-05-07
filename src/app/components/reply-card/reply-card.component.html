@@ -1,0 +1,13 @@
+<div class="reply-container">
+    <div class="header">
+        <img class="avatar" [attr.src]="'/assets' + currentUser.image.webp" alt="Avatar">
+    </div>
+    <div class="textarea-container">
+        <app-textarea [init]="replyingTo" (onChange)="content = $event"></app-textarea>
+    </div>
+    <div class="actions">
+        <app-button text="SEND" type="normal" color="primary" size="lg"
+            textTransform="uppercase" [enableHoverFx]="true"
+            (onClick)="handleReply()"></app-button>
+    </div>
+</div>

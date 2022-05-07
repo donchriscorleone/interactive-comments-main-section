@@ -1,0 +1,70 @@
+<ng-container *ngIf="type === 'normal'; else iconBtnTemplate">
+    <button class="btn" 
+    [ngClass]="{
+        'uppercase': textTransform === 'uppercase', 
+        'lowercase': textTransform === 'lowercase', 
+        'capitalize': textTransform === 'capitalize',
+        'btn-primary': color === 'primary', 
+        'btn-warning': color === 'warning', 
+        'btn-accent': color === 'accent',
+        'btn-sm': size === 'sm',
+        'btn-lg': size === 'lg'
+        }"
+    [class.btn-hover]="enableHoverFx"
+    (click)="handleClick($event)"
+    >{{text}}
+    </button>
+    <!-- <button class="btn btn-icon btn-hover text-primary">
+      <span class="btn-icon-container icon-reply"></span>
+      Reply
+    </button> -->
+</ng-container>
+
+<ng-template #iconBtnTemplate>
+    <button class="btn btn-icon"
+    [class.btn-hover]="enableHoverFx"
+    [ngClass]="size && 'btn-' + size"
+    [ngClass]="color && 'text-' + color"
+    (click)="handleClick($event)"
+     >
+        <span class="btn-icon-container" [ngClass]="iconName && 'icon-' + iconName"></span>
+        {{text}}
+    </button>
+</ng-template>
+
+<!-- <div>
+    <button class="btn btn-icon btn-hover text-primary">
+      <span class="btn-icon-container icon-reply"></span>
+      Reply
+    </button>
+  </div>
+  <div>
+    <button class="btn btn-icon btn-hover text-warning">
+      <span class="btn-icon-container icon-delete"></span>
+      Delete
+    </button>
+  </div>
+  <div>
+    <button class="btn btn-icon btn-hover text-primary">
+      <span class="btn-icon-container icon-edit"></span>
+      Edit</button>
+  </div>
+  <div>
+    <button class="btn btn-lg btn-hover btn-primary uppercase">Send</button>
+  </div>
+  <div>
+    <button class="btn btn-sm btn-hover btn-accent uppercase">No, Cancel</button>
+  </div>
+  <div>
+    <button class="btn btn-sm btn-hover btn-warning uppercase">Yes, Delete</button>
+  </div>
+  <div>
+    <button class="btn btn-icon">
+      <span class="btn-icon-container icon-plus"></span>
+    </button>
+  </div>
+  <div>
+    <button class="btn btn-icon">
+      <span class="btn-icon-container icon-minus"></span>
+    </button>
+  </div> -->

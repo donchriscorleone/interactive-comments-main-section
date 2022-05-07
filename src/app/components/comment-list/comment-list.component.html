@@ -1,0 +1,14 @@
+<ng-container *ngIf="(data$ | async) as data">
+    <div class="list-container">
+        <ng-container *ngFor="let comment of data.comments; let i = index">
+            <app-comment-card [comment]="comment"
+                [currentUser]="data.currentUser">
+                <ng-container *ngIf="!!comment.replies && comment.replies.length > 0">
+                    <app-comment-card *ngFor="let reply of comment.replies" [comment]="reply" 
+                        [currentUser]="data.currentUser">
+                    </app-comment-card>
+                </ng-container>
+        </app-comment-card>
+        </ng-container>
+    </div>
+</ng-container>

@@ -1,0 +1,16 @@
+@import './../../../assets/variables.scss';
+
+.textarea {
+    outline: none;
+    border: 1px solid $grayish-blue;
+    resize: none;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    font-size: 1.15rem;
+    height: 100%;
+    color: $dark-blue;
+}
+
+.textarea:focus {
+    border-color: $moderate-blue;
+}
