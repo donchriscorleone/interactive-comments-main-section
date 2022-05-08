@@ -9,7 +9,7 @@ export class ModalComponent implements OnInit {
   @Input() isOpen: boolean = false;
 
   @Output() modalEvent = new EventEmitter<boolean>();
-
+// asda
   constructor() { }
 
   ngOnInit(): void {
