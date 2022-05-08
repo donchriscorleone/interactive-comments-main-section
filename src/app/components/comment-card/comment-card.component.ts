@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Comment, DataService, IUser } from 'src/app/services/data.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class CommentCardComponent implements OnInit {
   @Input() currentUser!: IUser;
 
   isUser: boolean = false
+  isOpen$!: Observable<boolean>
 
   constructor(private dataService: DataService) { }
 
@@ -19,6 +21,8 @@ export class CommentCardComponent implements OnInit {
     if (this.comment) {
       this.isUser = this.comment.user.username === this.currentUser.username
     }
+
+    this.isOpen$ = this.dataService.isModalOpen;
   }
 
   handleScoreChange(score: any) {
@@ -26,7 +30,8 @@ export class CommentCardComponent implements OnInit {
   }
 
   handleDelete() {
-    this.dataService.delete(this.comment);
+    this.dataService.commentToBeDelete = this.comment;
+    this.dataService.handleModal(true);
   }
 
   handleAdd(obj: any) {
