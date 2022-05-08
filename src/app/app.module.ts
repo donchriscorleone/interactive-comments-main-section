@@ -8,6 +8,7 @@ import { ScoreControlComponent } from './components/score-control/score-control.
 import { CommentCardComponent } from './components/comment-card/comment-card.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { ReplyCardComponent } from './components/reply-card/reply-card.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ReplyCardComponent } from './components/reply-card/reply-card.component
     CommentCardComponent,
     CommentListComponent,
     ReplyCardComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule

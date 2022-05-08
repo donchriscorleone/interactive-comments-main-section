@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of, ReplaySubject } from 'rxjs';
-import { map, shareReplay, tap } from 'rxjs/operators'
+import { filter, map, shareReplay, switchMap, tap } from 'rxjs/operators'
 
 import * as data from './../../assets/data.json';
 
@@ -10,11 +10,20 @@ import * as data from './../../assets/data.json';
 export class DataService {
   private RAW = JSON.parse(JSON.stringify(data));
   private behaviorSubject = new BehaviorSubject<AppData>(this.RAW);
+
   data$ = this.behaviorSubject.asObservable();
 
+  private subjectModal = new BehaviorSubject<boolean>(false);
+  isModalOpen = this.subjectModal.asObservable();
+
+  commentToBeDelete!: Comment;
 
   constructor() { 
     this.behaviorSubject.next({currentUser: this.RAW.currentUser, comments: this.RAW.comments.map((c: IComment) => new Comment(c))})
+  }
+
+  handleModal(status: boolean) {
+    this.subjectModal.next(status);
   }
 
   getData() {
@@ -43,16 +52,19 @@ export class DataService {
     ).subscribe();
   }
 
-  delete(comment: Comment) {
+  delete() {
     of(this.RAW).pipe(
       map((data: AppData) => {
         data.comments = data.comments.filter(c => {
-          if (c.replies.length > 0) c.replies = c.replies.filter(r => (r.id !== comment.id))
-          return (c.id !== comment.id);
+          if (c.replies.length > 0) c.replies = c.replies.filter(r => (r.id !== this.commentToBeDelete.id))
+          return (c.id !== this.commentToBeDelete.id);
         })
         return data;
       }),
-      tap((data) => this.handleBehaviorSubject(data))
+      tap((data) => {
+        this.handleBehaviorSubject(data)
+        this.subjectModal.next(false);
+      })
     ).subscribe();
   }
 
